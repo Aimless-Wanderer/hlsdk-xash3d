@@ -417,6 +417,7 @@ TYPEDESCRIPTION	CBasePlayerWeapon::m_SaveData[] =
 	DEFINE_FIELD( CBasePlayerWeapon, m_iDefaultAmmo, FIELD_INTEGER ),
 	//DEFINE_FIELD( CBasePlayerWeapon, m_iClientClip, FIELD_INTEGER ), reset to zero on load so hud gets updated correctly
 	//DEFINE_FIELD( CBasePlayerWeapon, m_iClientWeaponState, FIELD_INTEGER ), reset to zero on load so hud gets updated correctly
+	DEFINE_FIELD( CBasePlayerWeapon, m_cActiveRockets, FIELD_INTEGER ),
 };
 
 IMPLEMENT_SAVERESTORE( CBasePlayerWeapon, CBasePlayerItem )
@@ -1586,7 +1587,6 @@ void CBasePlayerWeapon::PrintState( void )
 TYPEDESCRIPTION	CRpg::m_SaveData[] =
 {
 	DEFINE_FIELD( CRpg, m_fSpotActive, FIELD_INTEGER ),
-	DEFINE_FIELD( CRpg, m_cActiveRockets, FIELD_INTEGER ),
 };
 
 IMPLEMENT_SAVERESTORE( CRpg, CBasePlayerWeapon )

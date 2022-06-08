@@ -1792,8 +1792,9 @@ void UpdateClientData( const struct edict_s *ent, int sendweapons, struct client
 					if( pl->m_pActiveItem->m_iId == WEAPON_RPG )
 					{
 						cd->vuser2.y = ( (CRpg *)pl->m_pActiveItem )->m_fSpotActive;
-						cd->vuser2.z = ( (CRpg *)pl->m_pActiveItem )->m_cActiveRockets;
 					}
+
+					cd->vuser2.z = gun->m_cActiveRockets;
 				}
 			}
 		}

@@ -780,6 +780,8 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		pCurrent->m_iPrimaryAmmoType = (int)from->client.vuser4[0];
 		player.m_rgAmmo[pCurrent->m_iPrimaryAmmoType] = (int)from->client.vuser4[1];
 		player.m_rgAmmo[pCurrent->m_iSecondaryAmmoType] = (int)from->client.vuser4[2];
+
+		pCurrent->m_cActiveRockets = (int)from->client.vuser2[2];
 	}
 
 	// For random weapon events, use this seed to seed random # generator
@@ -832,7 +834,6 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	if( player.m_pActiveItem->m_iId == WEAPON_RPG )
 	{
 		( (CRpg *)player.m_pActiveItem )->m_fSpotActive = (int)from->client.vuser2[1];
-		( (CRpg *)player.m_pActiveItem )->m_cActiveRockets = (int)from->client.vuser2[2];
 	}
 
 	// Don't go firing anything if we have died.
@@ -900,7 +901,6 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	if( player.m_pActiveItem->m_iId == WEAPON_RPG )
 	{
 		to->client.vuser2[1] = ( (CRpg *)player.m_pActiveItem)->m_fSpotActive;
-		to->client.vuser2[2] = ( (CRpg *)player.m_pActiveItem)->m_cActiveRockets;
 	}
 
 	// Make sure that weapon animation matches what the game .dll is telling us
@@ -959,6 +959,8 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		to->client.vuser4[0] = pCurrent->m_iPrimaryAmmoType;
 		to->client.vuser4[1] = player.m_rgAmmo[pCurrent->m_iPrimaryAmmoType];
 		to->client.vuser4[2] = player.m_rgAmmo[pCurrent->m_iSecondaryAmmoType];
+
+		to->client.vuser2[2] = pCurrent->m_cActiveRockets;
 
 /*		if( pto->m_flPumpTime != -9999.0f )
 		{

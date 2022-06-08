@@ -351,6 +351,8 @@ public:
 	// hle time creep vars
 	float	m_flPrevPrimaryAttack;
 	float	m_flLastFireTime;
+
+	int m_cActiveRockets; // how many missiles in flight from this launcher right now?
 };
 
 class CBasePlayerAmmo : public CBaseEntity
@@ -699,7 +701,6 @@ public:
 
 	CLaserSpot *m_pSpot;
 	int m_fSpotActive;
-	int m_cActiveRockets;// how many missiles in flight from this launcher right now?
 
 	virtual BOOL UseDecrement( void )
 	{ 
@@ -725,7 +726,7 @@ public:
 	void EXPORT FollowThink( void );
 	void EXPORT IgniteThink( void );
 	void EXPORT RocketTouch( CBaseEntity *pOther );
-	static CRpgRocket *CreateRpgRocket( Vector vecOrigin, Vector vecAngles, CBaseEntity *pOwner, CRpg *pLauncher );
+	static CRpgRocket *CreateRpgRocket( Vector vecOrigin, Vector vecAngles, CBaseEntity *pOwner, CBasePlayerWeapon *pLauncher );
 
 	int m_iTrail;
 	float m_flIgniteTime;

@@ -101,7 +101,7 @@ LINK_ENTITY_TO_CLASS( rpg_rocket, CRpgRocket )
 
 //=========================================================
 //=========================================================
-CRpgRocket *CRpgRocket::CreateRpgRocket( Vector vecOrigin, Vector vecAngles, CBaseEntity *pOwner, CRpg *pLauncher )
+CRpgRocket *CRpgRocket::CreateRpgRocket( Vector vecOrigin, Vector vecAngles, CBaseEntity *pOwner, CBasePlayerWeapon *pLauncher )
 {
 	CRpgRocket *pRocket = GetClassPtr( (CRpgRocket *)NULL );
 
@@ -150,7 +150,7 @@ void CRpgRocket::Spawn( void )
 //=========================================================
 void CRpgRocket::RocketTouch( CBaseEntity *pOther )
 {
-	if( CRpg* pLauncher = (CRpg*)( (CBaseEntity*)( m_hLauncher ) ) )
+	if( CBasePlayerWeapon* pLauncher = (CBasePlayerWeapon*)( (CBaseEntity*)( m_hLauncher ) ) )
 	{
 		// my launcher is still around, tell it I'm dead.
 		pLauncher->m_cActiveRockets--;
@@ -265,7 +265,7 @@ void CRpgRocket::FollowThink( void )
 		pev->velocity = pev->velocity * 0.2f + vecTarget * flSpeed * 0.798f;
 		if( pev->waterlevel == 0 && pev->velocity.Length() < 1500.0f )
 		{
-			if( CRpg *pLauncher = (CRpg*)( (CBaseEntity*)( m_hLauncher ) ) )
+			if( CBasePlayerWeapon *pLauncher = (CBasePlayerWeapon*)( (CBaseEntity*)( m_hLauncher ) ) )
 			{
 				// my launcher is still around, tell it I'm dead.
 				pLauncher->m_cActiveRockets--;
